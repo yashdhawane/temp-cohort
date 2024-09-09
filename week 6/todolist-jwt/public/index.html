@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+
+    <div id="signup">
+        <h2>Signup  </h2>
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="signup()">Signup</button>
+    </div>
+    <div id="result"></div>
+
+    <button onclick="todo()">todo route</button>
+
+    <div id="todoApp" style="display:none;">
+        <h2>Todo List</h2>
+        <input type="text" id="todoInput" placeholder="Add a new todo">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todoList"></ul>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    
+</body>
+<script src="app.js"></script>
+</html>

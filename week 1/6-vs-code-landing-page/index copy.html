@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #0e0e0e;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: #0078d4;
+}
+.navbar{
+    width: 100%;
+   
+    display: flex;
+    justify-content: space-between;
+}
+        
+        .container{
+           
+            display: flex;
+            margin: 0 10rem;
+           
+        }
+
+        .verticalCenter{
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+        }
+
+       
+        img{
+            margin-right: 10px;
+        }
+
+        .navLink{
+            padding-left: 20px;
+
+        }
+       
+        .input{
+            margin-left: 15rem;
+        }
+      
+        .searchInput {
+    border-radius: 5px;
+    border: 1px solid rgb(255, 255, 255, 0.2);
+    padding: 8px;
+    font-size: 16px;
+    background-color: black;
+}
+
+.downloadButton {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 7px;
+    padding-left: 0px;
+    width: 120px;
+    padding-right: 0px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.hero{
+    margin: 2rem 10rem;
+}
+.hero-container{
+    width: 100%;
+    display: flex;
+    
+}
+.left{
+        display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: start;
+         flex-grow: 1;
+         
+}
+.buttonBanner{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 32px;
+    background-color: #181818;
+    border: 1px solid  rgba(255, 255, 255, 0.07);
+   
+    width: max-content;
+    margin-bottom: 8px;
+}
+.download{
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    padding: 12px 24px;
+    background-color: #0078d4;
+    border-radius: 5px;
+}
+h1{
+    font-size: 56px;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="container">
+                <div class="verticalCenter">
+                    <img src="https://code.visualstudio.com/favicon.ico" alt="logo" width="20" height="20">
+                    <h3>Vs Code</h3>
+                </div>
+                
+                <div class="verticalCenter ">
+                    <div>
+                        <a class="navLink" href="#">Docs</a>
+                        <a class="navLink" href="#">Updates</a>
+                        <a class="navLink" href="#">Blog</a>
+                        <a class="navLink" href="#">Api</a>
+                        <a class="navLink" href="#">Extensions</a>
+                        <a class="navLink" href="#">FAQ</a>
+                        <a class="navLink" href="#">Learn</a>
+                    </div>
+                </div>
+                <div class="verticalCenter">
+                    <div class="input">
+                        <input type="text" placeholder="Search Docs" class="searchInput">
+                        <button class="downloadButton">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="verticalCenter">
+        <p><a>Version 1.92</a> is now available! Read about the new features and fixes from July.</p>
+    </div>
+    <div class="hero">
+    <div class="hero-container">
+        <div class="left">
+            <span class="buttonBanner">
+                Free. Built on open source. Runs anywhere.
+            </span>
+            <h1>Code Editing. Redefined.</h1>
+            <button class="download">Download</button>
+            <p><a>Version 1.92</a> is now available! Read about the new features and fixes from July.</p>
+
+        </div>
+        <div class="right">
+            <img src="https://code.visualstudio.com/assets/home/home-screenshot-mac-2x-v2.png" alt="cover" width="800px">
+
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>
