@@ -11,6 +11,10 @@ const users = [
   
 ]; 
 
+
+let todos = [];
+let nextId = 1;
+
 // Middleware to Verify Token
 const verifyToken = (req, res, next) => {
     // const token = req.headers['authorization'];
@@ -34,6 +38,7 @@ app.post('/signup', async (req, res) => {
         password: hashedPassword
       };
       users.push(user);
+      console.log(users);
       res.status(201).send({ message: 'User registered successfully' });
     } catch (error) {
       res.status(500).send({ error: 'Error registering user' });
@@ -61,14 +66,50 @@ app.post('/login', (req, res) => {
   
     
 });
+app.post('/todos', verifyToken, (req, res) => {
+  const newTodo = {
+      id: nextId++,
+      task: req.body.task,
+      completed: false
+  };
+  todos.push(newTodo);
+  console.log(todos);
+  res.status(201).json(newTodo);
+});
 
+
+app.put('/todos/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const todoIndex = todos.findIndex(todo => todo.id === id);
+  
+  if (todoIndex === -1) {
+    return res.status(404).json({ message: "Todo not found" });
+  }
+  
+  todos[todoIndex] = { ...todos[todoIndex], ...req.body };
+  res.json(todos[todoIndex]);
+});
+
+// Delete a todo
+app.delete('/todos/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const todoIndex = todos.findIndex(todo => todo.id === id);
+  
+  if (todoIndex === -1) {
+    return res.status(404).json({ message: "Todo not found" });
+  }
+  
+  todos.splice(todoIndex, 1);
+  res.status(204).send();
+});
 
 
 
 // Protected Route
 app.get('/todos', verifyToken, (req, res) => {
     const user = req.user;  
-    res.json({ message: 'Authenticated', user});
+
+    res.json(todos)
 });
 
 
