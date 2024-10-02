@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Div Background Color</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+        .color-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        #color-div {
+            width: 200px;
+            height: 200px;
+            margin-top: 20px;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Change Div Background Color</h1>
+    <button class="color-button" style="background-color: blue;" onclick="changeColor('blue')">Blue</button>
+    <button class="color-button" style="background-color: red;" onclick="changeColor('red')">Red</button>
+    <button class="color-button" style="background-color: green;" onclick="changeColor('green')">Green</button>
+    <button class="color-button" style="background-color: orange;" onclick="changeColor('orange')">Orange</button>
+    <button class="color-button" style="background-color: purple;" onclick="changeColor('purple')">Purple</button>
+
+    <div id="color-div"></div>
+
+    <script>
+        function changeColor(color) {
+            const colorDiv = document.getElementById('color-div');
+            colorDiv.style.backgroundColor = color;
+        }
+    </script>
+</body>
+</html>
