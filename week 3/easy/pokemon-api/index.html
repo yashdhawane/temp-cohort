@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .pokemon-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 150px;
+            text-align: center;
+        }
+        .pokemon-card img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pokémon Cards</h1>
+        <form id="pokemon-form">
+            <label for="pokemon-number">Number of Pokémon:</label>
+            <input type="number" id="pokemon-number" min="1" max="151" required>
+            
+            <label for="pokemon-category">Select Pokémon Category:</label>
+            <select id="pokemon-category">
+                <option value="all">All</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <!-- Add more categories as needed -->
+            </select>
+            
+            <button type="submit">Get Pokémon</button>
+        </form>
+        
+        <div id="pokemon-container"></div>
+    </div>
+
+    <script>
+        const pokemonForm = document.getElementById('pokemon-form');
+        const pokemonContainer = document.getElementById('pokemon-container');
+
+        pokemonForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const numberOfPokemon = document.getElementById('pokemon-number').value;
+            const pokemonCategory = document.getElementById('pokemon-category').value;
+            pokemonContainer.innerHTML = ''; // Clear previous results
+
+            let pokemonData = [];
+
+            if (pokemonCategory === 'all') {
+                // Fetch all Pokémon if "all" is selected
+                const promises = [];
+                for (let i = 1; i <= numberOfPokemon; i++) {
+                    promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(res => res.json()));
+                }
+                
+                pokemonData = await Promise.all(promises);
+            } else {
+                // Fetch Pokémon based on the selected type (e.g., "fire", "water")
+                const response = await fetch(`https://pokeapi.co/api/v2/type/${pokemonCategory}`);
+                const typeData = await response.json();
+
+                // Extract the URLs for the Pokémon of the selected type
+                const typePokemons = typeData.pokemon.slice(0, numberOfPokemon); // Limit to the number user requested
+                const promises = typePokemons.map(poke =>
+                    fetch(poke.pokemon.url).then(res => res.json())
+                );
+                pokemonData = await Promise.all(promises);
+            }
+
+            // Display the Pokémon
+            pokemonData.forEach(pokemon => displayPokemon(pokemon));
+        });
+
+        function displayPokemon(pokemon) {
+            const card = document.createElement('div');
+            card.classList.add('pokemon-card');
+            card.innerHTML = `
+                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                <h3>${pokemon.name}</h3>
+                <p>Type: ${pokemon.types.map(type => type.type.name).join(', ')}</p>
+            `;
+            pokemonContainer.appendChild(card);
+        }
+    </script>
+</body>
+</html>
