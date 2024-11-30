@@ -10,7 +10,14 @@ app.use(express.json());
 
 const { auth, JWT_SECRET } = require("./auth/auth");
 
-mongoose.connect("mongodb+srv://yashdhawane17:cKqsySxnDCLreyTT@cluster0.xvk3j.mongodb.net/todo-app")
+// mongoose.connect("mongodb+srv://yashdhawane17:yash17112001@cluster0.xvk3j.mongodb.net/")
+
+mongoose.connect("mongodb+srv://yashdhawane17:yash17112001@cluster0.xvk3j.mongodb.net/todo-app", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 app.post("/signup", async function(req, res) {
     const email = req.body.email;
